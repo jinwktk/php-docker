@@ -9,10 +9,13 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mysql
-    ports:
-      - "443:443"
+    stdin_open: true
+    tty: true
+    # ports:
+    #   - "443:443"
     volumes:
       - "../:/var/www/"
+      - "./php/php.ini:/usr/local/etc/php/php.ini"
 
   # MySQL
   mysql:

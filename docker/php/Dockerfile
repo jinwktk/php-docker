@@ -5,6 +5,10 @@ FROM php:8.1.1-apache
   ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
   RUN chmod +x /usr/local/bin/install-php-extensions && sync \
     && install-php-extensions @composer-${composer_ver}
+
+  # Xdebug
+  RUN pecl install xdebug \
+  && docker-php-ext-enable xdebug
   
   # その他パッケージ、PHP拡張
   RUN apt-get update \
